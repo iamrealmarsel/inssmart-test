@@ -1,0 +1,73 @@
+{% macro getBike(data) %}
+
+  <section class="bikes">
+
+    <h1>{{data.cnt}}</h1>
+
+    <div class="bikes__tabs">
+      <div class="bikes__tab">Горный велосипед</div>
+      <div class="bikes__tab">Женский велосипед</div>
+    </div>
+
+    <div class="bikes__content">
+      <img src="" alt="горный велосипед">
+      <div class="">
+        <h2 class="bikes__title">Велосипед STELS Navigator 510 HD 26 2022</h2>
+        <p class="bikes__text">Данный велосипед с колесами 26 дюймов хорошо подходит высоким подросткам. Прогиб рамы и небольшой размер рамы расчитан на рост от 135 до 165 см.</p>
+        <p class="bikes__text">Суммарный вес велосипеда был снижен до 16,9 кг, так как рама была изготовлена с учетом использования велосипеда подростками.</p>
+      </div>
+
+      <hr>
+
+      <h3 class="bikes__caption">Характеристики</h3>
+      <ul class="bikes__features">
+        <li class="bikes__feature">Двойной обод</li>
+        <li class="bikes__feature">Алюминиевый сплав</li>
+        <li class="bikes__feature">Колеса диаметром 26 дюймов</li>
+        <li class="bikes__feature">Покрышки 26х1,95"</li>
+      </ul>
+
+      <h3 class="bikes__caption">Добавить характеристику</h3>
+      <div class="bikes__add">
+        <input class="inp" type="text" placeholder="Алюминиевый сплав">
+        <button class="btn">Добавить</button>
+      </div>
+
+      <div class="bikes__confirm">
+        <button class="btn">Окей</button>
+        <button class="btn btn_cancel">Отмена</button>
+      </div>
+    </div>
+
+    <div class="bikes__content">
+      <img src="" alt="горный велосипед">
+      <div class="">
+        <h2 class="bikes__title">Велосипед SCHWINN Traveler women 2022</h2>
+        <p class="bikes__text">Данный велосипед с колесами 26 дюймов хорошо подходит высоким подросткам. Прогиб рамы и небольшой размер рамы расчитан на рост от 135 до 165 см.</p>
+        <p class="bikes__text">Суммарный вес велосипеда был снижен до 16,9 кг, так как рама была изготовлена с учетом использования велосипеда подростками.</p>
+      </div>
+
+      <hr>
+
+      <h3 class="bikes__caption">Характеристики</h3>
+      <ul class="bikes__features">
+        <li class="bikes__feature">Двойной обод</li>
+        <li class="bikes__feature">Алюминиевый сплав</li>
+        <li class="bikes__feature">Колеса диаметром 26 дюймов</li>
+        <li class="bikes__feature">Покрышки 26х1,95"</li>
+      </ul>
+
+      <h3 class="bikes__caption">Добавить характеристику</h3>
+      <div class="bikes__add">
+        <input class="inp" type="text" placeholder="Алюминиевый сплав">
+        <button class="btn">Добавить</button>
+      </div>
+
+      <div class="bikes__confirm">
+        <button class="btn">Окей</button>
+        <button class="btn btn_cancel">Отмена</button>
+      </div>
+    </div>
+  </section>
+
+{% endmacro %}
