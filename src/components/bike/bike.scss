@@ -12,10 +12,6 @@
     outline: solid 1px red;
   }
 
-  &__tab.active {
-    background-color: rgb(242, 245, 193);
-  }
-
   &__tabs-content {
     padding: 15px;
   }
@@ -25,4 +21,8 @@
 
     outline: solid 1px red;
   }
+}
+
+.my-tabs-active {
+  background-color: rgb(242, 245, 193);
 }

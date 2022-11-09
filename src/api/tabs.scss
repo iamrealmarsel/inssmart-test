@@ -1,4 +1,4 @@
-.my-tabs > .active {
+.my-tabs-active {
   background-color: rgb(193, 241, 245);
 }
 
@@ -6,6 +6,6 @@
   display: none;
 }
 
-.my-content > .active {
+.my-content-active {
   display: block;
 }
