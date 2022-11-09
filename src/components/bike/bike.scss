@@ -1,0 +1,28 @@
+.bikes {
+  &__tabs {
+    display: flex;
+    padding: 15px;
+    column-gap: 15px;
+  }
+
+  &__tab {
+    padding: 15px;
+    cursor: pointer;
+
+    outline: solid 1px red;
+  }
+
+  &__tab.active {
+    background-color: rgb(242, 245, 193);
+  }
+
+  &__tabs-content {
+    padding: 15px;
+  }
+
+  &__content {
+    padding: 15px;
+
+    outline: solid 1px red;
+  }
+}

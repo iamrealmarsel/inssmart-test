@@ -28,6 +28,8 @@ module.exports = {
         ],
       },
 
+      { test: /\.ya?ml$/, use: 'yaml-loader' },
+
       { test: /\.ts?$/, use: 'ts-loader', exclude: /node_modules/ },
 
       { test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i, type: 'asset/resource' },

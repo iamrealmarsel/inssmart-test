@@ -1,4 +1,6 @@
-@use 'base/reset';
-@use 'base/body';
+@use '../api/tabs';
 
-@use 'components/header';
+@use './base/reset';
+@use './base/body';
+
+@use '../components/bike/bike';

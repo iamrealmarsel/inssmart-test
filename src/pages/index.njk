@@ -1,5 +1,5 @@
-{% from "bike/bike.njk" import getBike %}
-{% static "data.json" as items %}
+{% from "bike/bike.njk" import getBikes %}
+{% static "data.yaml" as data %}
 
 <html lang="en">
   <head>
@@ -9,10 +9,6 @@
     <title>Bikes</title>
   </head>
   <body>
-
-    {% for item in items %}
-      {{ getBike(item) }}
-    {% endfor %}
-
+    {{ getBikes(data) }}
   </body>
 </html>
