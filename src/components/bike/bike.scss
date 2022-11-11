@@ -12,11 +12,11 @@
     outline: solid 1px red;
   }
 
-  &__tabs-content {
+  &__content {
     padding: 15px;
   }
 
-  &__content {
+  &__content-item {
     padding: 15px;
 
     outline: solid 1px red;
@@ -25,4 +25,14 @@
 
 .my-tabs-active {
   background-color: rgb(242, 245, 193);
+}
+
+.accordion {
+  &__title {
+    // display: none;
+  }
+
+  &__wrapper {
+    outline: green 1px solid;
+  }
 }

@@ -18,7 +18,7 @@ export default class Tabs {
   }
 
   public init() {
-    this.tabsContainerElement?.classList.add('my-tabs');
+    // this.tabsContainerElement?.classList.add('my-tabs');
     this.contentContainerElement?.classList.add('my-content');
 
     this.tabElements[0].classList.add('my-tabs-active');

@@ -19,7 +19,6 @@ module.exports = merge(common, {
     open: true,
     compress: true,
     hot: true,
-    port: 8080,
     watchFiles: paths.src + '/**/*.njk',
   },
 

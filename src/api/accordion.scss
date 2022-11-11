@@ -1,0 +1,6 @@
+.my-accordion-title {
+  & + * {
+    height: 0;
+    overflow: hidden;
+  }
+}
