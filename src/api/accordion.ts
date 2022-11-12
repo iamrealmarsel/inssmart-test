@@ -6,16 +6,19 @@ export default class Accordion {
     handler: (event: Event) => void;
     animation: Animation;
   }[];
+  private isInited: boolean;
 
   constructor(selector: string) {
     this.accordionElement = document.querySelector(selector);
     this.accordionChildElements = this.accordionElement?.children;
 
     this.eventHandlers = [];
-    this.destroy = this.destroy.bind(this);
+    this.isInited = false;
   }
 
   public init() {
+    if (this.isInited) return;
+
     if (this.accordionChildElements) {
       for (let i = 0; i < this.accordionChildElements.length; i += 2) {
         const titleElement = this.accordionChildElements[i];
@@ -29,7 +32,7 @@ export default class Accordion {
             contentWrapperElement instanceof HTMLElement
           )
         )
-          throw new Error('wrong element structure');
+          throw new Error('Wrong element structure');
 
         let isOpen = false;
         let isAnimated = false;
@@ -79,6 +82,8 @@ export default class Accordion {
 
           isAnimated = true;
 
+          // TODO: если меняю размер окна то контент обрезается, полагаю из-за хардкоденной высоты, она не меняется пчмуто
+
           if (isOpen) {
             accordionAnimation.effect = closedEffect;
             contentWrapperElement.style.height = `${contentElement.offsetHeight}`;
@@ -100,9 +105,13 @@ export default class Accordion {
         titleElement.addEventListener('click', handleTitleAccordionClick);
       }
     }
+
+    this.isInited = true;
   }
 
   public destroy() {
+    if (!this.isInited) return;
+
     this.eventHandlers.forEach((item) => {
       item.element.classList.remove('my-accordion-title');
       item.element.removeEventListener('click', item.handler);
@@ -110,5 +119,7 @@ export default class Accordion {
       contentWrapperElement.style.height = '';
       item.animation.cancel();
     });
+
+    this.isInited = false;
   }
 }

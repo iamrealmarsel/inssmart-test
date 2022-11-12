@@ -3,65 +3,55 @@
 
   <section class="bikes">
 
-    <div class="bikes__tabs" id="tabs">
+    <div class="bikes__tabs">
       {% for item in items %}
-        <div class="bikes__tab">{{item.tab}}</div>
+        <div class="bikes__tab" data-tab-to="tab_{{item.id}}">{{item.tab}}</div>
       {% endfor %}
     </div>
 
-    <div class="bikes__content" id="content">
+    <div class="bikes__content" id="accordion">
       {% for item in items %}
 
-        <div class="bikes__content-item accordion" id="accordion">
-          <div class="accordion__title">
-            ---
-            {{item.tab}}
-            ---
-          </div>
+        <div class="bikes__accordion-title">
+          ---
+          {{item.tab}}
+          ---
+        </div>
 
-          <div class="accordion__wrapper">
-            <div class="accordion__content">
+        <div class="bikes__accordion-wrapper" id="tab_{{item.id}}">
+          <div class="bikes__accordion-content">
 
-              <div class="bikes__content-img">
-                <img src="" alt="{{item.title}}">
-              </div>
-              <div class="bikes__content-text">
-                <h2 class="bikes__title">{{item.title}}</h2>
-                <p class="bikes__text">{{item.text.p1}}</p>
-                <p class="bikes__text">{{item.text.p2}}</p>
-              </div>
-
-              <hr>
-
-              <h3 class="bikes__caption">Характеристики</h3>
-
-              <ul class="bikes__features {{ 'bikes__features_bullet' if item.featuresMod }}">
-                {% for feature in item.features %}
-                  <li class="bikes__feature">{{ feature }}</li>
-                {% endfor %}
-              </ul>
-
-              <h3 class="bikes__caption">Добавить характеристику</h3>
-              <div class="bikes__add">
-                <input class="inp" type="text" placeholder="Алюминиевый сплав">
-                <button class="btn">Добавить</button>
-              </div>
-
-              <div class="bikes__confirm">
-                <button class="btn">Окей</button>
-                <button class="btn btn_cancel">Отмена</button>
-              </div>
-
+            <div class="bikes__content-img">
+              <img src="" alt="{{item.title}}">
             </div>
-          </div>
-
-          <div>--- Еще ОДИН ТАЙТЛ ---</div>
-          <div>
-            <div class="contenttest">
-              ВМЕСТЕ С КОНТЕНТОМ ВМЕСТЕ С КОНТЕНТОМ ВМЕСТЕ С КОНТЕНТОМ ВМЕСТЕ С КОНТЕНТОМ
+            <div class="bikes__content-text">
+              <h2 class="bikes__title">{{item.title}}</h2>
+              <p class="bikes__text">{{item.text.p1}}</p>
+              <p class="bikes__text">{{item.text.p2}}</p>
             </div>
-          </div>
 
+            <hr>
+
+            <h3 class="bikes__caption">Характеристики</h3>
+
+            <ul class="bikes__features {{ 'bikes__features_bullet' if item.featuresMod }}">
+              {% for feature in item.features %}
+                <li class="bikes__feature">{{ feature }}</li>
+              {% endfor %}
+            </ul>
+
+            <h3 class="bikes__caption">Добавить характеристику</h3>
+            <div class="bikes__add">
+              <input class="inp" type="text" placeholder="Алюминиевый сплав">
+              <button class="btn">Добавить</button>
+            </div>
+
+            <div class="bikes__confirm">
+              <button class="btn">Окей</button>
+              <button class="btn btn_cancel">Отмена</button>
+            </div>
+
+          </div>
         </div>
 
       {% endfor %}

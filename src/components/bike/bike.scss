@@ -21,18 +21,29 @@
 
     outline: solid 1px red;
   }
+
+  &__accordion-title {
+    display: none;
+  }
+
+  &__accordion-wrapper {
+    outline: green 1px solid;
+  }
 }
 
+// переопределение моего апи
 .my-tabs-active {
   background-color: rgb(242, 245, 193);
 }
 
-.accordion {
-  &__title {
-    // display: none;
-  }
+@media (max-width: 600px) {
+  .bikes {
+    &__tab {
+      display: none;
+    }
 
-  &__wrapper {
-    outline: green 1px solid;
+    &__accordion-title {
+      display: block;
+    }
   }
 }
