@@ -34,46 +34,24 @@ export default class Accordion {
         )
           throw new Error('Wrong element structure');
 
+        titleElement.classList.add('my-accordion-title');
+
         let isOpen = false;
         let isAnimated = false;
 
-        const openedEffect = new KeyframeEffect(
-          contentWrapperElement,
-          [
-            {
-              height: `${contentElement.offsetHeight}px`,
-              offset: 1,
-            },
-          ],
-          {
-            duration: 500,
-            fill: 'forwards',
-            easing: 'ease-in-out',
-          }
-        );
+        const animationEffect = new KeyframeEffect(contentWrapperElement, null, {
+          duration: 500,
+          fill: 'forwards',
+          easing: 'ease-in-out',
+        });
 
-        const closedEffect = new KeyframeEffect(
-          contentWrapperElement,
-          [
-            {
-              height: 0,
-              offset: 1,
-            },
-          ],
-          {
-            duration: 500,
-            fill: 'forwards',
-            easing: 'ease-in-out',
-          }
-        );
-
-        const accordionAnimation = new Animation();
+        const accordionAnimation = new Animation(animationEffect);
 
         accordionAnimation.addEventListener('finish', () => {
           isAnimated = false;
+          accordionAnimation.cancel();
+          contentWrapperElement.style.height = isOpen ? 'auto' : '0';
         });
-
-        titleElement.classList.add('my-accordion-title');
 
         const handleTitleAccordionClick = (event: Event) => {
           event.preventDefault();
@@ -85,24 +63,40 @@ export default class Accordion {
           // TODO: если меняю размер окна то контент обрезается, полагаю из-за хардкоденной высоты, она не меняется пчмуто
 
           if (isOpen) {
-            accordionAnimation.effect = closedEffect;
-            contentWrapperElement.style.height = `${contentElement.offsetHeight}`;
+            animationEffect.setKeyframes([
+              {
+                height: `${contentElement.offsetHeight}px`,
+                offset: 0,
+              },
+              {
+                height: 0,
+                offset: 1,
+              },
+            ]);
           } else {
-            accordionAnimation.effect = openedEffect;
-            contentWrapperElement.style.height = '0';
+            animationEffect.setKeyframes([
+              {
+                height: 0,
+                offset: 0,
+              },
+              {
+                height: `${contentElement.offsetHeight}px`,
+                offset: 1,
+              },
+            ]);
           }
 
           isOpen = !isOpen;
           accordionAnimation.play();
         };
 
+        titleElement.addEventListener('click', handleTitleAccordionClick);
+
         this.eventHandlers.push({
           element: titleElement,
           handler: handleTitleAccordionClick,
           animation: accordionAnimation,
         });
-
-        titleElement.addEventListener('click', handleTitleAccordionClick);
       }
     }
 
