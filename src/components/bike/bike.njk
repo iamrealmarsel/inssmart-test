@@ -3,7 +3,7 @@
 
     <div class="bikes__tabs">
       {% for item in items %}
-        <div class="bikes__tab" data-tab-to="tab_{{item.id}}">{{item.tab}}</div>
+        <div class="bikes__tab" data-tab-to="tab-{{item.id}}">{{item.tab}}</div>
       {% endfor %}
     </div>
 
@@ -16,7 +16,7 @@
           ---
         </div>
 
-        <div class="bikes__accordion-wrapper" id="tab_{{item.id}}">
+        <div class="bikes__accordion-wrapper" id="tab-{{item.id}}">
           <div class="bikes__accordion-content">
 
             <div class="bikes__content-img">
@@ -32,17 +32,17 @@
 
             <h3 class="bikes__caption">Характеристики</h3>
 
-            <ul class="bikes__features {{ 'bikes__features_bullet' if item.featuresMod }}">
+            <ul id="feature-list-{{item.id}}" class="bikes__features {{ 'bikes__features_bullet' if item.featuresMod }}">
               {% for feature in item.features %}
                 <li class="bikes__feature">{{ feature }}</li>
               {% endfor %}
             </ul>
 
             <h3 class="bikes__caption">Добавить характеристику</h3>
-            <div class="bikes__add">
-              <input class="inp" type="text" placeholder="Алюминиевый сплав">
-              <button class="btn">Добавить</button>
-            </div>
+            <form class="bikes__add" data-feature-add-to="feature-list-{{item.id}}">
+              <input class="inp" name="feature" type="text" placeholder="Алюминиевый сплав">
+              <button class="btn" type="submit">Добавить</button>
+            </form>
 
             <div class="bikes__confirm">
               <button class="btn">Окей</button>

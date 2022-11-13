@@ -31,6 +31,12 @@
   }
 }
 
+.my-validation-error {
+  input[type='text'] {
+    outline: solid red 1px;
+  }
+}
+
 // переопределение моего апи
 .my-tabs-active {
   background-color: rgb(242, 245, 193);
