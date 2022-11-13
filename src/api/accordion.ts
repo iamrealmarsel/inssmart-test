@@ -66,6 +66,8 @@ export default class Accordion {
           this.destroy();
         }
       });
+    } else {
+      this.create();
     }
   }
 
