@@ -6,12 +6,14 @@ interface IEventHandlers {
 
 interface IDefautlOptions {
   duration: number;
+  easing: string;
   breakpointMaxWidth?: number;
   breakpointMinWidth?: number;
 }
 
 const defautlOptions: IDefautlOptions = {
   duration: 500,
+  easing: 'ease-in-out',
 };
 
 export default class Accordion {
@@ -110,8 +112,8 @@ export default class Accordion {
 
         const animationEffect = new KeyframeEffect(contentWrapperElement, null, {
           duration: this.options.duration,
+          easing: this.options.easing,
           fill: 'forwards',
-          easing: 'ease-in-out',
         });
 
         const accordionAnimation = new Animation(animationEffect);
