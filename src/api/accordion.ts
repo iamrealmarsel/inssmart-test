@@ -13,7 +13,7 @@ interface IDefautlOptions {
 
 const defautlOptions: IDefautlOptions = {
   duration: 500,
-  easing: 'ease-in-out',
+  easing: 'ease',
 };
 
 export default class Accordion {
