@@ -60,8 +60,6 @@ export default class Accordion {
 
           isAnimated = true;
 
-          // TODO: если меняю размер окна то контент обрезается, полагаю из-за хардкоденной высоты, она не меняется пчмуто
-
           if (isOpen) {
             animationEffect.setKeyframes([
               {

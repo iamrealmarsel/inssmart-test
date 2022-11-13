@@ -6,9 +6,8 @@ const accordion = new Accordion('#accordion');
 
 const initAPIs = () => {
   // TODO: думаю перенести это в настройки апи
-  if (document.documentElement.clientWidth <= 600) {
-    // TODO:  или такой вариант, проверить в windows
-    // if (window.innerWidth <= 600) {
+
+  if (window.innerWidth <= 600) {
     tabs.destroy();
     accordion.init();
   } else {
