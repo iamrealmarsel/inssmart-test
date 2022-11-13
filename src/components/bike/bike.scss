@@ -23,7 +23,7 @@
   }
 
   &__accordion-title {
-    display: none;
+    // display: none;
   }
 
   &__accordion-wrapper {
@@ -36,14 +36,14 @@
   background-color: rgb(242, 245, 193);
 }
 
-@media (max-width: 600px) {
-  .bikes {
-    &__tab {
-      display: none;
-    }
+// @media (max-width: 600px) {
+//   .bikes {
+//     &__tab {
+//       display: none;
+//     }
 
-    &__accordion-title {
-      display: block;
-    }
-  }
-}
+//     &__accordion-title {
+//       display: block;
+//     }
+//   }
+// }

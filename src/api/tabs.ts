@@ -1,15 +1,19 @@
+interface IEventHandlers {
+  tabElement: HTMLElement;
+  contentElement: HTMLElement;
+  handler: (event: Event) => void;
+}
+
+interface IActiveElements {
+  tabElement: HTMLElement | null;
+  contentElement: HTMLElement | null;
+}
+
 export default class Tabs {
   private options: object | undefined;
   private tabElements: NodeListOf<Element>;
-  private eventHandlers: {
-    tabElement: HTMLElement;
-    contentElement: HTMLElement;
-    handler: (event: Event) => void;
-  }[];
-  private activeElements: {
-    tabElement: HTMLElement | null;
-    contentElement: HTMLElement | null;
-  };
+  private eventHandlers: IEventHandlers[];
+  private activeElements: IActiveElements;
   private isInited: boolean;
 
   constructor(options?: object) {

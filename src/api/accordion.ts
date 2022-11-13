@@ -1,23 +1,90 @@
+interface IEventHandlers {
+  element: HTMLElement;
+  handler: (event: Event) => void;
+  animation: Animation;
+}
+
+interface IDefautlOptions {
+  duration: number;
+  breakpointMaxWidth?: number;
+  breakpointMinWidth?: number;
+}
+
+const defautlOptions: IDefautlOptions = {
+  duration: 500,
+};
+
 export default class Accordion {
   private accordionElement: HTMLElement | null;
   private accordionChildElements: HTMLCollection | undefined;
-  private eventHandlers: {
-    element: HTMLElement;
-    handler: (event: Event) => void;
-    animation: Animation;
-  }[];
-  private isInited: boolean;
+  private eventHandlers: IEventHandlers[];
+  private isAccordionCreated: boolean;
+  private options: IDefautlOptions;
 
-  constructor(selector: string) {
+  constructor(selector: string, options?: Partial<IDefautlOptions>) {
     this.accordionElement = document.querySelector(selector);
     this.accordionChildElements = this.accordionElement?.children;
 
+    this.options = { ...defautlOptions, ...options };
     this.eventHandlers = [];
-    this.isInited = false;
+    this.isAccordionCreated = false;
   }
 
   public init() {
-    if (this.isInited) return;
+    const { breakpointMaxWidth, breakpointMinWidth } = this.options;
+
+    if (breakpointMaxWidth && breakpointMinWidth) {
+      if (window.innerWidth >= breakpointMinWidth && window.innerWidth <= breakpointMaxWidth) {
+        this.create();
+      }
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= breakpointMinWidth && window.innerWidth <= breakpointMaxWidth) {
+          this.create();
+        } else {
+          this.destroy();
+        }
+      });
+    } else if (breakpointMaxWidth) {
+      if (window.innerWidth <= breakpointMaxWidth) {
+        this.create();
+      }
+      window.addEventListener('resize', () => {
+        if (window.innerWidth <= breakpointMaxWidth) {
+          this.create();
+        } else {
+          this.destroy();
+        }
+      });
+    } else if (breakpointMinWidth) {
+      if (window.innerWidth >= breakpointMinWidth) {
+        this.create();
+      }
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= breakpointMinWidth) {
+          this.create();
+        } else {
+          this.destroy();
+        }
+      });
+    }
+  }
+
+  private destroy() {
+    if (!this.isAccordionCreated) return;
+
+    this.eventHandlers.forEach((item) => {
+      item.element.classList.remove('my-accordion-title');
+      item.element.removeEventListener('click', item.handler);
+      const contentWrapperElement = item.element.nextElementSibling as HTMLElement;
+      contentWrapperElement.style.height = '';
+      item.animation.cancel();
+    });
+
+    this.isAccordionCreated = false;
+  }
+
+  private create() {
+    if (this.isAccordionCreated) return;
 
     if (this.accordionChildElements) {
       for (let i = 0; i < this.accordionChildElements.length; i += 2) {
@@ -40,7 +107,7 @@ export default class Accordion {
         let isAnimated = false;
 
         const animationEffect = new KeyframeEffect(contentWrapperElement, null, {
-          duration: 500,
+          duration: this.options.duration,
           fill: 'forwards',
           easing: 'ease-in-out',
         });
@@ -98,20 +165,35 @@ export default class Accordion {
       }
     }
 
-    this.isInited = true;
+    this.isAccordionCreated = true;
   }
 
-  public destroy() {
-    if (!this.isInited) return;
-
-    this.eventHandlers.forEach((item) => {
-      item.element.classList.remove('my-accordion-title');
-      item.element.removeEventListener('click', item.handler);
-      const contentWrapperElement = item.element.nextElementSibling as HTMLElement;
-      contentWrapperElement.style.height = '';
-      item.animation.cancel();
-    });
-
-    this.isInited = false;
+  private configBreakpoints() {
+    // const { breakpointMaxWidth, breakpointMinWidth } = this.options;
+    // if (breakpointMaxWidth && breakpointMinWidth) {
+    //   window.addEventListener('resize', () => {
+    //     if (window.innerWidth >= breakpointMinWidth && window.innerWidth <= breakpointMaxWidth) {
+    //       this.create();
+    //     } else {
+    //       this.destroy();
+    //     }
+    //   });
+    // } else if (breakpointMaxWidth) {
+    //   window.addEventListener('resize', () => {
+    //     if (window.innerWidth <= breakpointMaxWidth) {
+    //       this.create();
+    //     } else {
+    //       this.destroy();
+    //     }
+    //   });
+    // } else if (breakpointMinWidth) {
+    //   window.addEventListener('resize', () => {
+    //     if (window.innerWidth >= breakpointMinWidth) {
+    //       this.create();
+    //     } else {
+    //       this.destroy();
+    //     }
+    //   });
+    // }
   }
 }
