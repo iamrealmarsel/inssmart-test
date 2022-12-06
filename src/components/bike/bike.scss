@@ -1,34 +1,98 @@
 .bikes {
+  border-radius: 0px 20px 20px 20px;
+
   &__tabs {
     display: flex;
-    padding: 15px;
-    column-gap: 15px;
   }
 
   &__tab {
-    padding: 15px;
+    padding: 20px 24px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #d9d9d9;
+    font-size: 22px;
+    font-weight: 500;
     cursor: pointer;
-
-    outline: solid 1px red;
   }
 
   &__content {
-    padding: 15px;
+    width: 100%;
+    max-width: 850px;
+    padding: 40px 0;
+    border-radius: 0px 20px 20px 20px;
+    background-color: #fff;
   }
 
-  &__content-item {
-    padding: 15px;
+  &__description {
+    display: flex;
+    column-gap: 70px;
+    padding-right: 60px;
+    margin-bottom: 50px;
+  }
 
-    outline: solid 1px red;
+  &__description-img {
+    flex-shrink: 0;
+    overflow-x: hidden;
+
+    img {
+      margin-left: -65px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    font-size: 26px;
+  }
+
+  &__caption {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &__text {
+    margin-bottom: 16px;
   }
 
   &__accordion-title {
     display: none;
   }
 
-  &__accordion-wrapper {
-    outline: green 1px solid;
+  &__features-wrapper {
+    padding: 0 60px;
   }
+
+  &__features {
+    column-count: 2;
+    margin-bottom: 30px;
+  }
+
+  &__feature {
+    margin-bottom: 16px;
+  }
+
+  &__add {
+    display: flex;
+    column-gap: 24px;
+  }
+}
+
+.inp {
+  width: 100%;
+  max-width: 350px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 16px;
+}
+
+.btn {
+  width: 128px;
+  padding: 14px 24px;
+  border-radius: 16px;
+  border: none;
+  color: #fff;
+  background-color: #3922c5;
+  cursor: pointer;
 }
 
 .my-validation-error {
@@ -37,19 +101,44 @@
   }
 }
 
-// переопределение моего апи
+.my-accordion-active {
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
 .my-tabs-active {
-  background-color: rgb(242, 245, 193);
+  color: #3922c5;
+  background-color: #fff;
 }
 
 @media (max-width: 600px) {
   .bikes {
-    &__tab {
+    &__tabs {
       display: none;
     }
 
     &__accordion-title {
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      svg {
+        transition: transform 0.3s;
+      }
+    }
+
+    &__description {
+      flex-direction: column;
+    }
+
+    &__features {
+      column-count: auto;
+    }
+
+    &__add {
+      flex-direction: column;
     }
   }
 }

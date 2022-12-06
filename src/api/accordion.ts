@@ -132,6 +132,8 @@ export default class Accordion {
           isAnimated = true;
 
           if (isOpen) {
+            titleElement.classList.remove('my-accordion-active');
+
             animationEffect.setKeyframes([
               {
                 height: `${contentElement.offsetHeight}px`,
@@ -143,6 +145,8 @@ export default class Accordion {
               },
             ]);
           } else {
+            titleElement.classList.add('my-accordion-active');
+
             animationEffect.setKeyframes([
               {
                 height: 0,
@@ -170,34 +174,5 @@ export default class Accordion {
     }
 
     this.isAccordionCreated = true;
-  }
-
-  private configBreakpoints() {
-    // const { breakpointMaxWidth, breakpointMinWidth } = this.options;
-    // if (breakpointMaxWidth && breakpointMinWidth) {
-    //   window.addEventListener('resize', () => {
-    //     if (window.innerWidth >= breakpointMinWidth && window.innerWidth <= breakpointMaxWidth) {
-    //       this.create();
-    //     } else {
-    //       this.destroy();
-    //     }
-    //   });
-    // } else if (breakpointMaxWidth) {
-    //   window.addEventListener('resize', () => {
-    //     if (window.innerWidth <= breakpointMaxWidth) {
-    //       this.create();
-    //     } else {
-    //       this.destroy();
-    //     }
-    //   });
-    // } else if (breakpointMinWidth) {
-    //   window.addEventListener('resize', () => {
-    //     if (window.innerWidth >= breakpointMinWidth) {
-    //       this.create();
-    //     } else {
-    //       this.destroy();
-    //     }
-    //   });
-    // }
   }
 }
